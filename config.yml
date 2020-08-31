@@ -14,11 +14,11 @@ add_commit_info: True
 
 # These subdirectories contain Jupyter notebooks that will be rendered
 # into webpages.
-include_dir: ["analysis", "setup", "license", "notes", "protected"]
+include_dir: ["analysis"]
 
 # Do not add links in the navigation bar for the Jupyter notebooks in
 # these subdirectories.
-hide_navbar: ["notes", "analysis"]
+hide_navbar: ["notes"]
 
 # Any Jupyter notebooks listed here will not be rendered into webpages
 # (e.g., "analysis/temp.ipynb").

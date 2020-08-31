@@ -1,2 +1,6 @@
 **/*.ipynb_checkpoints
 analysis/*txt
+
+**/.sos
+**/.ipynb_checkpoints
+**/__pycache__

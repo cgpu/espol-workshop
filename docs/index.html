@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="ipynb_website:version" content="0.9.7" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Metabolomics and Data Analysis (Workshop ESPOL), instructor: Shuzhao Li, Ph.D</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="site_libs/highlightjs/null.min.css"
+      type="text/css" />
+<script src="site_libs/highlightjs/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+<style type="text/css">
+  div.input_prompt {display: none;}
+  div.output_html {
+     font-family: "PT Mono", monospace;
+     font-size: 10.0pt;
+     color: #353535;
+     padding-bottom: 25px;
+ }
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'] ["\\[","\\]"] ],
+        processEscapes: true
+        },
+        "HTML-CSS": {
+            preferredFont: "TeX",
+            availableFonts: ["TeX"],
+            styles: {
+                scale: 110,
+                ".MathJax_Display": {
+                    "font-size": "110%",
+                }
+            }
+        }
+    });
+</script>
+</head>
+<body>
+<style type = "text/css">
+@font-face {
+ font-family: 'Droid Sans';
+ font-weight: normal;
+ font-style: normal;
+ src: local('Droid Sans'), url('fonts/droid-sans.ttf') format('truetype');
+}
+@font-face {
+ font-family: 'Fira Code';
+ font-weight: normal;
+ font-style: normal;
+ src: local('Fira Code'), url('fonts/firacode.otf') format('opentype');
+}
+@font-face {
+ font-family: 'PT Mono';
+ font-weight: normal;
+ font-style: normal;
+ src: local('PT Mono'), url('fonts/ptmono.ttf') format('truetype');
+}
+body {
+  font-size: 160%;
+  padding-top: 66px;
+  padding-bottom: 40px;
+}
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 20px;
+ }
+a.anchor-link:link {
+  text-decoration: none;
+  padding: 0px 20px;
+  visibility: hidden;
+}
+h1:hover .anchor-link,
+h2:hover .anchor-link,
+h3:hover .anchor-link,
+h4:hover .anchor-link,
+h5:hover .anchor-link,
+h6:hover .anchor-link {
+  visibility: hidden;
+}
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+  // mark it active
+  menuAnchor.parent().addClass('active');
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+<div class="container-fluid main-container">
+<!-- tabsets -->
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+<!-- code folding -->
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Metabolomics and Data Analysis (Workshop ESPOL), instructor: Shuzhao Li, Ph.D</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+<li>
+  <a href="./index.html">Overview</a>
+</li>
+<li>
+  <a href="./analysis.html">Analysis</a>
+</li>
+      </ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+   <a href="https://github.com/"> source </a>
+</li>
+</ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Metabolomics-and-Data-Analysis-(Workshop-ESPOL)">Metabolomics and Data Analysis (Workshop ESPOL)<a class="anchor-link" href="#Metabolomics-and-Data-Analysis-(Workshop-ESPOL)">&#182;</a></h1><p>Instructor: Shuzhao Li, Ph.D (Emory University)
+August 26-30, 2019.</p>
+<p>The field of metabolomics is undergoing an explosive growth, due to the enormous potential of metabolomics in understanding biology and disease and in improving human health. This also creates a large gap in training on metabolomics data analysis. This course will provide a practical guide to scientists, engineers and students that employ metabolomics in their work, with an emphasis on the understanding and interpretation of the data.</p>
+<p>The course will cover major areas of metabolomics data analysis, including study design, data processing, statistical and pathway analysis, integration with other data types and data presentation. Brief introduction will be given to related topics of precision medicine, exposome and big data analytics.</p>
+<p>This site will be updated during the course.</p>
+<ul>
+<li>Because it's easier to download the whole site from GitHub than individual files, consider re-downloading this workshop site each morning to get the newer files.</li>
+<li>For Jupyter notebooks, please shut down a notebook (kernel) after you finish with it. Each kernel cost computer resources!</li>
+</ul>
+<h2 id="Day-1.">Day 1.<a class="anchor-link" href="#Day-1.">&#182;</a></h2><ol>
+<li>Workshop overview, aligning goals and expectations</li>
+<li>Overview of metabolomics, current opportunities and challenges</li>
+<li>Preparing software - MzMine 2, and sample data</li>
+<li>Preparing data science tools</li>
+<li>Participant presentation and discussion</li>
+<li>Processing software and the landscape of computational metabolomics</li>
+<li>Hand-on session on MzMine 2 and XCMS Online</li>
+</ol>
+<h2 id="Day-2.">Day 2.<a class="anchor-link" href="#Day-2.">&#182;</a></h2><ol>
+<li>A bioinformatics primer to data science. Using Python and R for data analysis.</li>
+<li>Live session of Jupyter Notebook.</li>
+<li>Statistical analysis - overview</li>
+<li>Hand-on session, statistical analysis using Jupyter Notebook.</li>
+<li>Hand-on session, statistical analysis using MetaboAnalyst</li>
+<li>Participant presentation and discussion</li>
+<li>LC-MS metabolomics quality control</li>
+<li>Data visualization and presentation</li>
+</ol>
+<h2 id="Day-3.">Day 3.<a class="anchor-link" href="#Day-3.">&#182;</a></h2><ol>
+<li>Study case of YFV infection of immune cells</li>
+<li>Metabolomics Databases and searches</li>
+<li>Starting hand-on pathway analysis - Using KEGG and MetaboAnalyst</li>
+<li>Pathway and network analysis - lecture</li>
+<li>Continued hand-on session on pathway and network analysis</li>
+<li>Cytoscape and Metscape</li>
+</ol>
+<h2 id="Day-4.">Day 4.<a class="anchor-link" href="#Day-4.">&#182;</a></h2><ol>
+<li>Application of metabolomics to precision medicine</li>
+<li>Metabolite annotation and reporting</li>
+<li>Review of statistical analysis</li>
+<li>Hand-on session on MWAS and data presentation</li>
+<li>Participant project discussions</li>
+</ol>
+<h2 id="Day-5.">Day 5.<a class="anchor-link" href="#Day-5.">&#182;</a></h2><ol>
+<li>Review of metabolomic workflow</li>
+<li>How metabolomics is applied to exposome and environmental health</li>
+<li>Integration of metabolomics in Systems biology</li>
+<li>Review of pathway and network analysis</li>
+<li>Review of data presentation, visualization methods</li>
+<li>Concluding workshop.</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Links-used-in-this-course">Links used in this course<a class="anchor-link" href="#Links-used-in-this-course">&#182;</a></h1><p>Jupyter notebook:
+<a href="https://jupyter.readthedocs.io/en/latest/content-quickstart.html">https://jupyter.readthedocs.io/en/latest/content-quickstart.html</a></p>
+<p>Anaconda, a software distribution for Python/R data science (Use Python 3 for this workshop):
+<a href="https://www.anaconda.com/distribution/">https://www.anaconda.com/distribution/</a></p>
+<p>MzMine 2, metabolomics data pre-processing
+<a href="http://mzmine.github.io/download.html">http://mzmine.github.io/download.html</a></p>
+<p>MetaboAnalyst: <a href="https://www.metaboanalyst.ca">https://www.metaboanalyst.ca</a></p>
+<p>XCMS Online: <a href="https://xcmsonline.scripps.edu">https://xcmsonline.scripps.edu</a></p>
+<p>Mummichog server: <a href="http://mummichog-2.appspot.com/">http://mummichog-2.appspot.com/</a> (via <a href="http://mummichog.org">http://mummichog.org</a>)</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Other-Resources">Other Resources<a class="anchor-link" href="#Other-Resources">&#182;</a></h1><p>MSconvert, part of proteowizard, for converting mass spectrometry data to open formats:
+<a href="http://proteowizard.sourceforge.net/download.html">http://proteowizard.sourceforge.net/download.html</a></p>
+<p>Metabolic pathways and models</p>
+<p>KEGG: <a href="http://www.genome.jp/kegg/kegg2.html">http://www.genome.jp/kegg/kegg2.html</a></p>
+<p>BioCyc: <a href="https://biocyc.org">https://biocyc.org</a></p>
+<p>Recon: <a href="https://www.vmh.life/#human/all">https://www.vmh.life/#human/all</a></p>
+<p>Metabolite ID conversion</p>
+<p><a href="https://cts.fiehnlab.ucdavis.edu">https://cts.fiehnlab.ucdavis.edu</a></p>
+<p><a href="https://www.metaboanalyst.ca/faces/upload/ConvertView.xhtml">https://www.metaboanalyst.ca/faces/upload/ConvertView.xhtml</a></p>
+<p>Metabolomics data analysis tools</p>
+<p>MetScape: <a href="http://metscape.ncibi.org/">http://metscape.ncibi.org/</a></p>
+<p>MetExplore: <a href="https://metexplore.toulouse.inra.fr/">https://metexplore.toulouse.inra.fr/</a></p>
+<p>Metabox/Met-DA: <a href="http://metda.fiehnlab.ucdavis.edu">http://metda.fiehnlab.ucdavis.edu</a></p>
+<p>Network visualization tools</p>
+<p>Cytoscape: <a href="http://cytoscape.org">http://cytoscape.org</a></p>
+<p>Gehpi: <a href="https://gephi.org">https://gephi.org</a></p>
+<p>The UAB Metabolomics Workshops: <a href="https://www.uab.edu/proteomics/metabolomics/workshop/workshop_july_2018.php">https://www.uab.edu/proteomics/metabolomics/workshop/workshop_july_2018.php</a></p>
+</div>
+</div>
+</div>
+<hr>
+https://github.com/cgpu/espol-workshop
+<!-- To enable disqus, uncomment the section below and provide your disqus_shortname -->
+</div>
+<script>
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+</html>
